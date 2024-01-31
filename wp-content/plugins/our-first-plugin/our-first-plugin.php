@@ -2,17 +2,39 @@
 
 /*
  * Plugin Name:       Our First Plugin
- * Plugin URI:        https://example.com/plugins/the-basics/
- * Description:       Handle the basics with this plugin.
- * Version:           1.10.3
+ * Plugin URI:        https://google.com/
+ * Description:       This is our first plugin
+ * Version:           1.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
- * Author:            John Smith
- * Author URI:        https://author.example.com/
+ * Author:            Md. Rayhan Uddin Chowdhury
+ * Author URI:        https://rayhanuddinchy.com/
  * License:           GPL v2 or later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Update URI:        https://example.com/my-plugin/
  * Text Domain:       my-basics-plugin
  * Domain Path:       /languages
  */
 
+add_filter('the_content', 'change_content');
+
+function change_content($content) {
+  // $content = $content . "This is our first plugin";
+  // return $content;
+
+  if(!is_page('test-page')) {
+    return $content;
+  }
+  $id = get_the_ID();
+  $custom_content = '<div style="border: 4px solid #ddd; padding: 10px; margin: 20px 0;">';
+  $custom_content .= '<p>This is custom content added under the post!</p>';
+  $custom_content .='<p>Post ID: '. $id .'</p>';
+  $custom_content .= '<div>';
+
+  $content = $content . $custom_content;
+  return $content;
+}
+
+add_filter('the_title', 'change_title');
+function change_title($title) {
+  $title = $title . "!!!!";
+  return $title;
+}
