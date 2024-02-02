@@ -10,31 +10,41 @@
  * Author:            Md. Rayhan Uddin Chowdhury
  * Author URI:        https://rayhanuddinchy.com/
  * License:           GPL v2 or later
- * Text Domain:       my-basics-plugin
+ * Text Domain:       our-first-plugin
  * Domain Path:       /languages
  */
 
-add_filter('the_content', 'change_content');
+//  if(!class_exists('Our_First_Class')) {
+  class Our_First_Class{
+    public function __construct() {
+      add_action('init', array($this, 'init'));
+    }
 
-function change_content($content) {
-  // $content = $content . "This is our first plugin";
-  // return $content;
+    public function init() {
+      add_filter('the_content', array($this, 'ofp_change_content'));
+      add_filter('the_title', array($this, 'ofp_change_title'));
+    }
 
-  if(!is_page('test-page')) {
-    return $content;
+    public function ofp_change_content($content) {
+      // $content = $content . "This is our first plugin";
+      // return $content;
+
+      // if(!is_page('test-page')) {
+      //   return $content;
+      // }
+      $id = get_the_ID();
+      $custom_content = '<div style="border: 4px solid #ddd; padding: 10px; margin: 20px 0;">';
+      $custom_content .= '<p>This is custom content added under the post!</p>';
+      $custom_content .='<p>Post ID: '. $id .'</p>';
+      $custom_content .= '<div>';
+
+      $content = $content . $custom_content;
+      return $content;
+    }
+
+    function ofp_change_title($title) {
+      $title = $title . "!!!!";
+      return $title;
+    }
   }
-  $id = get_the_ID();
-  $custom_content = '<div style="border: 4px solid #ddd; padding: 10px; margin: 20px 0;">';
-  $custom_content .= '<p>This is custom content added under the post!</p>';
-  $custom_content .='<p>Post ID: '. $id .'</p>';
-  $custom_content .= '<div>';
-
-  $content = $content . $custom_content;
-  return $content;
-}
-
-add_filter('the_title', 'change_title');
-function change_title($title) {
-  $title = $title . "!!!!";
-  return $title;
-}
+//  }
