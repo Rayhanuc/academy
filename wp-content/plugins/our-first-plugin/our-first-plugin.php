@@ -22,7 +22,10 @@
 
     public function init() {
       add_filter('the_content', array($this, 'ofp_change_content'));
-      add_filter('the_title', array($this, 'ofp_change_title'));
+      // add_filter('the_title', array($this, 'ofp_change_title'));
+      // add_filter('excerpt_length', array($this, 'change_excerpt_length'));
+      add_action('wp_footer', array($this, 'add_footer_content'), 999);
+      // add_action( $hook_name:string, $callback:callable, $priority:integer, $accepted_args:integer )
     }
 
     public function ofp_change_content($content) {
@@ -42,9 +45,16 @@
       return $content;
     }
 
-    function ofp_change_title($title) {
-      $title = $title . "!!!!";
-      return $title;
+    // function ofp_change_title($title) {
+    //   $title = $title . "!!!!";
+    //   return $title;
+    // }
+
+    function add_footer_content() {
+      // echo "<h1 style='color:red;'>Hello footer</h1>";
+      // echo "<script>alert('Hello World in Footer');</script>";
     }
   }
-//  }
+
+  new Our_First_Class();
+// }

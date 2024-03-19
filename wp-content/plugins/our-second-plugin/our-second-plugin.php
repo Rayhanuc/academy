@@ -14,27 +14,33 @@
  * Domain Path:       /languages
  */
 
-add_filter('the_content', 'osp_change_content');
+add_filter('the_content', 'osp_display_some_content');
 
-function osp_change_content($content) {
-  // $content = $content . "This is our first plugin";
-  // return $content;
-
-  // if(!is_page('test-page')) {
-  //   return $content;
-  // }
-  $id = get_the_ID();
-  $custom_content = '<div style="border: 4px solid #ddd; padding: 10px; margin: 20px 0;">';
-  $custom_content .= '<p>This is custom content added under the post!</p>';
-  $custom_content .='<p>Post ID: '. $id .'</p>';
+function osp_display_some_content($content) {
+  
+  $custom_content = '<div style="border: 4px solid red; padding: 10px; margin: 20px 0;">';
+  $custom_content .= '<p>Quick Brown Fox Jumps Over The Lazy Dog</p>';
   $custom_content .= '<div>';
 
-  $content = $content . $custom_content;
+  // $content = $content . $custom_content;
+  $content .= $custom_content;
   return $content;
 }
 
 add_filter('the_title', 'osp_change_title');
 function osp_change_title($title) {
+  if(is_admin()){
+    return $title;
+  }
   $title = $title . "!!!!";
   return $title;
 }
+
+function change_excerpt_length($number) {
+  return 20;
+}
+
+function osc_change_qr_code_size($size){
+	return 100;
+}
+add_filter('fqc_qr_code_size', 'osc_change_qr_code_size', 15);

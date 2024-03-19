@@ -63,3 +63,21 @@ add_action( 'wp_enqueue_scripts', 'twentytwentytwo_styles' );
 
 // Add block patterns
 require get_template_directory() . '/inc/block-patterns.php';
+
+function change_qr_code_size( $size ){
+	return 200;
+}
+add_filter('fqc_qr_code_size', 'change_qr_code_size');
+
+
+add_filter('fqc_qr_code_color', 'change_fqc_qr_code_color');
+function change_fqc_qr_code_color( $color ){
+	// return '3498DB';
+	$color = '48C9B0';
+	return $color;
+}
+
+add_filter('fqc_qr_code_position', 'change_qr_code_position');
+function change_qr_code_position( $position ) {
+	return 'sticky';
+}
