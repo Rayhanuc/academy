@@ -81,3 +81,26 @@ add_filter('fqc_qr_code_position', 'change_qr_code_position');
 function change_qr_code_position( $position ) {
 	return 'sticky';
 }
+
+// World time plugin feathure extend by hook
+add_filter('world_city_times_cities', 'change_world_city_times_cities');
+function change_world_city_times_cities($cities) {
+	// $cities = array(
+	// 	'New York',
+	// 	'London',
+	// 	'Tokyo',
+	// 	'Sydney',
+	// 	'Dublin',
+	// 	'Dhaka',
+	// 	// Add more cities as needed
+	// );
+
+	// New city push in array
+	// array_push($cities, 'Dhaka');
+	// array_push($cities, 'Dublin');
+
+	// Only show few cities
+	$cities = ['Dhaka', 'Dublin'];
+
+	return $cities;
+}
