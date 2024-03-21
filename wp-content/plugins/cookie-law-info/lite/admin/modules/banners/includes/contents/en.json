@@ -62,7 +62,7 @@
                 },
                 "gpcOption": {
                     "elements": {
-                        "description": "<p>Your opt-out settings for this website have been respected since we deteted a <b>Gobal Privacy Control</b> signal from your browser and, therefore, you cannot change this setting.</p>"
+                        "description": "<p>Your opt-out settings for this website have been respected since we detected a <b>Global Privacy Control</b> signal from your browser and, therefore, you cannot change this setting.</p>"
                     }
                 },
                 "showLess": "Show less",
@@ -162,7 +162,7 @@
                 },
                 "gpcOption": {
                     "elements": {
-                        "description": "<p>Your opt-out settings for this website have been respected since we deteted a <b>Gobal Privacy Control</b> signal from your browser and, therefore, you cannot change this setting.</p>"
+                        "description": "<p>Your opt-out settings for this website have been respected since we detected a <b>Global Privacy Control</b> signal from your browser and, therefore, you cannot change this setting.</p>"
                     }
                 },
                 "showLess": "Show less",

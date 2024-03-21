@@ -636,8 +636,13 @@ if ( ! class_exists( 'Cookie_Law_Info_Cookieyes' ) ) {
 
 				if ( isset( $response['status'] ) && 'error' === $response['status'] ) {
 
-					if ( isset( $response['error_code'] ) && 1003 == $response['error_code'] ) {
-						$api_response['code'] = 101;
+					if ( isset( $response['error_code'] ) ) {
+						if ( 1003 == $response['error_code'] ) {
+							$api_response['code'] = 101;
+						} elseif ( 1012 == $response['error_code'] && isset( $response['error_message'] ) ) {
+							$api_response['code'] = 100;
+							$api_response['message'] = $response['error_message'];
+						}
 					}
 				} else {
 					if ( isset( $response['token'] ) ) {
