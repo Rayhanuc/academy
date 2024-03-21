@@ -63,3 +63,44 @@ add_action( 'wp_enqueue_scripts', 'twentytwentytwo_styles' );
 
 // Add block patterns
 require get_template_directory() . '/inc/block-patterns.php';
+
+function change_qr_code_size( $size ){
+	return 200;
+}
+add_filter('fqc_qr_code_size', 'change_qr_code_size');
+
+
+add_filter('fqc_qr_code_color', 'change_fqc_qr_code_color');
+function change_fqc_qr_code_color( $color ){
+	// return '3498DB';
+	$color = '48C9B0';
+	return $color;
+}
+
+add_filter('fqc_qr_code_position', 'change_qr_code_position');
+function change_qr_code_position( $position ) {
+	return 'sticky';
+}
+
+// World time plugin feathure extend by hook
+add_filter('world_city_times_cities', 'change_world_city_times_cities');
+function change_world_city_times_cities($cities) {
+	// $cities = array(
+	// 	'New York',
+	// 	'London',
+	// 	'Tokyo',
+	// 	'Sydney',
+	// 	'Dublin',
+	// 	'Dhaka',
+	// 	// Add more cities as needed
+	// );
+
+	// New city push in array
+	// array_push($cities, 'Dhaka');
+	// array_push($cities, 'Dublin');
+
+	// Only show few cities
+	$cities = ['Dhaka', 'Dublin'];
+
+	return $cities;
+}
