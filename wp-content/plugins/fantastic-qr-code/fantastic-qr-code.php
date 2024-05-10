@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Plugin Name:       Fantastic QR Code
+ * Plugin Name:       Fantastic QR Code 1
  * Description:       Display a QR code for the current page
  * Version:           1.0.0
  * Requires at least: 5.2
@@ -20,11 +20,24 @@
   
   public function __construct() {
     add_action('init', array($this, 'init'));
+
+    // add_action( 'wp_head', function() {
+    //   // echo get_post_meta( 170, 'instructor_name', true );
+    //   echo get_post_meta( get_the_ID(), 'instructor_name', true );
+    // } );
   }
 
   public function init() {
     // add_filter( $hook_name:string, $callback:callable, $priority:integer, $accepted_args:integer )
     add_filter('the_content', array($this, 'add_qr_code'), 999);
+
+    // metabox file call
+    // require_once plugin_dir_path(__FILE__) . 'metabox.php';
+    // new Metabox();
+    
+    // Generated metabox by online generator file link
+    require_once plugin_dir_path(__FILE__) . 'metabox-io.php';
+    new Metabox_IO();
   }
 
   public function add_qr_code($content) {
